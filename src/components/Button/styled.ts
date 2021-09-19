@@ -59,7 +59,7 @@ export const StyledButton = styled.button<ButtonProps>`
     /* Props and Custom Colors */
     ${({color})=> colorToCss(color)}
     /* Large Button Props */
-    ${({isLarge})=> isLarge && css`grid-column-end: span 2`}
+    ${({isLarge})=> isLarge && css`grid-column-end: span 2;`}
 
     position: relative;
     overflow: hidden;
