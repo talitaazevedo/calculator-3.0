@@ -90,5 +90,5 @@ export const Wrapper: FunctionComponent<WrapperProps> = ({
             </Button>
         </StyledWrapper>
     );
-};
+}
 export default Wrapper;

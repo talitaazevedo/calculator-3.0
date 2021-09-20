@@ -38,6 +38,28 @@ export const App: FunctionComponent = () => {
 
         return true;
     };
+
+    // Wrapper Button handlers
+
+    const onDigitButtonClick = (digit: Digit) => {
+        let newDisplay = display;
+        if ((display === "0" && digit === 0) || display.length > 12) {
+            return;
+        }
+        if (waitingForOperand) {
+            newDisplay = "";
+            setWaitingForOperand(false);
+        }
+        if (display !== "0") {
+            newDisplay = newDisplay + digit.toString();
+        } else {
+            newDisplay = digit.toString();
+        }
+        setDisplay(newDisplay);
+    };
+
+    
+
     return (
         <StyledApp>
             <Display
@@ -49,7 +71,7 @@ export const App: FunctionComponent = () => {
                 }
                 hasMemory={memory !== 0}
             />
-            <Wrapper></Wrapper>
+            <Wrapper onDigitButtonClick={onDigitButtonClick} />
         </StyledApp>
     );
 };
