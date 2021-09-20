@@ -68,7 +68,18 @@ export const App: FunctionComponent = () => {
         setDisplay(newDisplay);
         setWaitingForOperand(false);
     };
-
+    const onOperatorButtonClick = (operator: Operator) => {
+        const operand = Number(display);
+        if (typeof pendingOperator !== "undefined" && !waitingForOperand) {
+            if (calculate(operand, pendingOperator)) {
+                return;
+            }
+        } else {
+            setResult(operand);
+        }
+        setPendingOperator(operator);
+        setWaitingForOperand(true);
+    };
     return (
         <StyledApp>
             <Display
