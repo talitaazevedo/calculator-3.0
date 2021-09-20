@@ -57,8 +57,17 @@ export const App: FunctionComponent = () => {
         }
         setDisplay(newDisplay);
     };
-
-    
+    const onPointButtonCLick = () => {
+        let newDisplay = display;
+        if (waitingForOperand) {
+            newDisplay = "0";
+        }
+        if (newDisplay.indexOf(".") === -1) {
+            newDisplay = newDisplay + ".";
+        }
+        setDisplay(newDisplay);
+        setWaitingForOperand(false);
+    };
 
     return (
         <StyledApp>
@@ -71,7 +80,10 @@ export const App: FunctionComponent = () => {
                 }
                 hasMemory={memory !== 0}
             />
-            <Wrapper onDigitButtonClick={onDigitButtonClick} />
+            <Wrapper
+                onDigitButtonClick={onDigitButtonClick}
+                onPointButtonCLick={onPointButtonCLick}
+            />
         </StyledApp>
     );
 };
