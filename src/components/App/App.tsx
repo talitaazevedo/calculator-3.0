@@ -88,6 +88,27 @@ export const App: FunctionComponent = () => {
             setDisplay(display.slice(1));
         }
     };
+    const onEqualButtonClick = () => {
+        const operand = Number(display);
+        if (typeof pendingOperator !== "undefined" && !waitingForOperand) {
+            if (!calculate(operand, pendingOperator)) {
+                return;
+            }
+            setPendingOperator(undefined);
+        } else {
+            setDisplay(operand.toString());
+        }
+        setResult(operand);
+        setWaitingForOperand(true);
+    };
+    const onAllClearButtonClick = () => {
+        setMemory(0);
+        setResult(0);
+        setPendingOperator(undefined);
+        setDisplay("0");
+        setWaitingForOperand(true);
+    };
+
     return (
         <StyledApp>
             <Display
@@ -104,6 +125,8 @@ export const App: FunctionComponent = () => {
                 onPointButtonClick={onPointButtonClick}
                 onOperatorButtonClick={onOperatorButtonClick}
                 onChangesSignButtonClick={onChangesSignButtonClick}
+                onEqualButtonClick={onEqualButtonClick}
+                onAllClearButtonClick={onAllClearButtonClick}
             />
         </StyledApp>
     );
