@@ -108,6 +108,10 @@ export const App: FunctionComponent = () => {
         setDisplay("0");
         setWaitingForOperand(true);
     };
+    const onClearEntryButtonClick = () => {
+        setDisplay("0");
+        setWaitingForOperand(true);
+    };
 
     return (
         <StyledApp>
