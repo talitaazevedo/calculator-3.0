@@ -57,7 +57,7 @@ export const App: FunctionComponent = () => {
         }
         setDisplay(newDisplay);
     };
-    const onPointButtonCLick = () => {
+    const onPointButtonClick = () => {
         let newDisplay = display;
         if (waitingForOperand) {
             newDisplay = "0";
@@ -80,6 +80,14 @@ export const App: FunctionComponent = () => {
         setPendingOperator(operator);
         setWaitingForOperand(true);
     };
+    const onChangesSignButtonClick = () => {
+        const value = Number(display);
+        if (value > 0) {
+            setDisplay("-" + display);
+        } else if (value < 0) {
+            setDisplay(display.slice(1));
+        }
+    };
     return (
         <StyledApp>
             <Display
@@ -93,7 +101,9 @@ export const App: FunctionComponent = () => {
             />
             <Wrapper
                 onDigitButtonClick={onDigitButtonClick}
-                onPointButtonCLick={onPointButtonCLick}
+                onPointButtonClick={onPointButtonClick}
+                onOperatorButtonClick={onOperatorButtonClick}
+                onChangesSignButtonClick={onChangesSignButtonClick}
             />
         </StyledApp>
     );
